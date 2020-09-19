@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 final class KernelTest extends TestCase
 {
+
     public function testKernelClassExists(): void
     {
         $classExists = class_exists('\App\Kernel');
