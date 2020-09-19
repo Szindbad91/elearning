@@ -2,14 +2,22 @@
 namespace App;
 
 use App\core\Request\Request;
+use App\core\Router\Router;
 
 class Kernel
 {
-    public function run() {
-        $this->instantiateRequest();
+    private Router $router;
+
+    public function __construct()
+    {
+        $this->instantiateRouter();
     }
 
-    private function instantiateRequest() {
-        Request::getInstance();
+    public function run() {
+
+    }
+
+    private function instantiateRouter() {
+        $this->router = new core\Router\Router(Request::getInstance());
     }
 }
