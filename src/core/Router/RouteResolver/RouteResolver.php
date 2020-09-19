@@ -9,12 +9,21 @@ use App\core\Router\RouteResolverInterface;
 
 class RouteResolver implements RouteResolverInterface
 {
+    private static RouteResolver $instance;
+
     private Router $router;
     private array $routes = [];
 
-    public function __construct(Router $router)
+    private function __construct(Router $router)
     {
         $this->router = $router;
+    }
+
+    public static function getInstance(Router $router) {
+        if (!isset(self::$instance)) {
+            self::$instance = new self($router);
+        }
+        return self::$instance;
     }
 
     public function registerRoute(string $route, string $controllerClass, string $action): void
@@ -30,7 +39,8 @@ class RouteResolver implements RouteResolverInterface
         $resolvedRoute = $this->getResolvedRoute();
         $component = $resolvedRoute['component'];
         $action = $resolvedRoute['action'];
-        $component::$action();
+        $controller = new $component();
+        $controller->$action();
     }
 
     public function getResolvedRoute() {

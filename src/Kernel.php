@@ -12,7 +12,7 @@ class Kernel
     private RouteResolverInterface $routerResolver;
 
     private array $registrateableComponentTypes = [
-        ''
+        'System'
     ];
 
     public function __construct()

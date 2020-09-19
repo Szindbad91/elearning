@@ -3,6 +3,7 @@
 namespace App\core\ComponentRegistrator\registrators;
 
 use App\core\ComponentRegistrator\ComponentRegistratorInterface;
+use App\core\Module\ModuleInterface;
 
 class SimpleComponentRegistrator implements ComponentRegistratorInterface
 {
@@ -15,6 +16,16 @@ class SimpleComponentRegistrator implements ComponentRegistratorInterface
 
     public function registerComponents()
     {
+        $directoryToSearch = __DIR__ . '/../../../Modules/' . $this->type . '/';
+        $contents = scandir($directoryToSearch);
 
+        foreach ($contents as $content) {
+            if (!in_array($content, ['.', '..']) && class_exists('App\Modules\\' . $this->type . '\\' . $content . '\Module')) {
+                $moduleClass = '\App\Modules\\' . $this->type . '\\' . $content . '\Module';
+                /** @var ModuleInterface $module */
+                $module = new $moduleClass();
+                $module->register();
+            }
+        }
     }
 }
