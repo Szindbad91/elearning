@@ -18,4 +18,8 @@ class Router
     public function getRoute(): array {
         return $this->route;
     }
+
+    public function getRouteString(): string {
+        return $this->request->getRoute();
+    }
 }

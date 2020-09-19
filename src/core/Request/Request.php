@@ -10,7 +10,7 @@ class Request {
 
     private function __construct()
     {
-        $this->setRoute($_SERVER['REDIRECT_URL']);
+        $this->setRoute($_SERVER['REDIRECT_URL'] ?? '');
         $this->setMethod($_SERVER['REQUEST_METHOD']);
     }
 
