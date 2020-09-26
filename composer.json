@@ -15,5 +15,6 @@
             "App\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+    }
 }

@@ -18,7 +18,6 @@ class SimpleComponentRegistrator implements ComponentRegistratorInterface
     {
         $directoryToSearch = __DIR__ . '/../../../Modules/' . $this->type . '/';
         $contents = scandir($directoryToSearch);
-
         foreach ($contents as $content) {
             if (!in_array($content, ['.', '..']) && class_exists('App\Modules\\' . $this->type . '\\' . $content . '\Module')) {
                 $moduleClass = '\App\Modules\\' . $this->type . '\\' . $content . '\Module';
