@@ -19,7 +19,6 @@ class ModuleRenderer implements Renderable
 
     public function render()
     {
-
         $template = $this->requireToVar(__DIR__ . '/../../../' . $this->templateName);
         return $template;
     }
