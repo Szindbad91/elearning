@@ -11,7 +11,7 @@ class Request {
     private function __construct()
     {
         $this->setRoute($_SERVER['REDIRECT_URL'] ?? '');
-        $this->setMethod($_SERVER['REQUEST_METHOD']);
+        $this->setMethod($_SERVER['REQUEST_METHOD'] ?? '');
     }
 
     public static function getInstance(): Request {

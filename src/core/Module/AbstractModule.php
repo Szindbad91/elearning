@@ -16,6 +16,10 @@ abstract class AbstractModule implements ModuleInterface
     public function __construct()
     {
         $this->routeResolver = RouteResolverFactory::create(new Router(Request::getInstance()));
+        if (in_array(ContainerModuleInterface::class, class_implements($this))) {
+            $containers = $this->getContainers();
+            var_dump($containers);
+        }
     }
 
     public static function getInstance() {
